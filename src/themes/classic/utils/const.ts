@@ -220,7 +220,7 @@ export const INDOOR_COLOR = '#8899aa';
 
 // map tiles vendor, maptiler or mapbox or stadiamaps
 // if you want to use maptiler, set the access token in MAP_TILE_ACCESS_TOKEN
-export const MAP_TILE_VENDOR = 'mapcn';
+export const MAP_TILE_VENDOR = 'direct_raster';
 
 // map tiles style name, see MAP_TILE_STYLES for more details
 export const MAP_TILE_STYLE_LIGHT = 'osm-bright';
@@ -250,6 +250,11 @@ export const MAP_TILE_STYLES = {
     // Use free, tokenless styles to avoid requiring an API key
     'osm-bright': 'https://tiles.openfreemap.org/styles/bright',
     'dark-matter': 'https://tiles.openfreemap.org/styles/dark',
+  },
+  // Direct raster tiles (no TileJSON, no external style fetch)
+  direct_raster: {
+    'osm-bright': '/tiles/style.json',
+    'dark-matter': '/tiles/style.json',
   },
   maptiler: {
     'dataviz-light': 'https://api.maptiler.com/maps/dataviz/style.json?key=',
