@@ -1,4 +1,3 @@
-import MapboxLanguage from '@mapbox/mapbox-gl-language';
 import React, {
   useRef,
   useCallback,
@@ -247,9 +246,7 @@ const RunMap = ({
     (ref: MapRef) => {
       if (ref !== null) {
         const map = ref.getMap();
-        if (map && IS_CHINESE) {
-          map.addControl(new MapboxLanguage({ defaultLanguage: 'zh-Hans' }));
-        }
+        // Carto/MapCN tiles don't support MapboxLanguage, skip localization
         // all style resources have been downloaded
         // and the first visually complete rendering of the base style has occurred.
         // it's odd. when use style other than mapbox, the style.load event is not triggered.Add commentMore actions
