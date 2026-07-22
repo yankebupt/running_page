@@ -1,21 +1,24 @@
 {
   "version": 8,
-  "name": "OSM Raster",
+  "name": "Carto Raster",
+  "glyphs": "https://tiles.basemaps.cartocdn.com/fonts/{fontstack}/{range}.pbf",
   "sources": {
-    "osm-raster": {
+    "carto-raster": {
       "type": "raster",
       "tiles": [
-        "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        "https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png",
+        "https://b.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png",
+        "https://c.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png"
       ],
       "tileSize": 256,
-      "attribution": "© OpenStreetMap contributors"
+      "attribution": "© OpenStreetMap contributors, © CARTO"
     }
   },
   "layers": [
     {
-      "id": "osm-raster",
+      "id": "carto-raster",
       "type": "raster",
-      "source": "osm-raster"
+      "source": "carto-raster"
     }
   ]
 }
