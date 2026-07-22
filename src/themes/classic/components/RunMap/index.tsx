@@ -41,7 +41,7 @@ import RunMapButtons from './RunMapButtons';
 import styles from './style.module.css';
 import type { FeatureCollection } from 'geojson';
 import type { RPGeometry } from '../../static/run_countries';
-import './mapbox.css';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import LightsControl from './LightsControl';
 import { useMapTheme, useThemeChangeCounter } from '../../hooks/useTheme';
 
