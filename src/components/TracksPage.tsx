@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { toPng } from 'html-to-image';
 import * as polyline from '@mapbox/polyline';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import type { Activity } from '../types';
 import {
   getAvailableYears,
@@ -11,7 +11,7 @@ import {
   formatPace,
 } from '../hooks/useActivities';
 import { useLocale } from '../hooks/useLocale';
-import { MAPBOX_TOKEN } from '../config';
+
 
 type SportType = 'Run';
 
@@ -100,7 +100,7 @@ function TrackMap({
   dark?: boolean;
 }) {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
+  const map = useRef<maplibregl.Map | null>(null);
   const mapReady = useRef(false);
   const activityRef = useRef(activity);
   const activitiesRef = useRef(activities);
@@ -150,7 +150,7 @@ function TrackMap({
           'line-opacity': 0.9,
         },
       });
-      const bounds = new mapboxgl.LngLatBounds();
+      const bounds = new maplibregl.LngLatBounds();
       coords.forEach((c) => bounds.extend(c as [number, number]));
       m.fitBounds(bounds, { padding: 50, maxZoom: 14 });
       return;
@@ -200,7 +200,7 @@ function TrackMap({
     const lats = allCoords.map((c) => c[1]).sort((a, b) => a - b);
     const t = Math.floor(lngs.length * 0.1);
     m.fitBounds(
-      new mapboxgl.LngLatBounds(
+      new maplibregl.LngLatBounds(
         [lngs[t], lats[t]],
         [lngs[lngs.length - 1 - t], lats[lats.length - 1 - t]]
       ),
@@ -215,15 +215,14 @@ function TrackMap({
       map.current.setStyle(style);
       return;
     }
-    mapboxgl.accessToken = MAPBOX_TOKEN;
     mapReady.current = false;
-    map.current = new mapboxgl.Map({
+    map.current = new maplibregl.Map({
       container: mapContainer.current,
       style,
       center: [108, 35],
       zoom: 3,
     });
-    map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
     map.current.on('style.load', () => {
       mapReady.current = true;
       updateRoutes.current();
